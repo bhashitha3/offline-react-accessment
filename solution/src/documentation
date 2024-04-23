@@ -1,0 +1,64 @@
+Title: Documenting React Code for Form Submission
+
+Author: Bashitha
+
+Date: 04-23-2024
+
+Introduction:
+
+This document serves as an explanation of the code written for a React application handling form submissions. The application allows users to input their name and select a location, submitting this information for display in a table. The code incorporates validation for name uniqueness and error handling for fetching location options. Let's delve into each component and its functionality.
+
+1. Imports:
+
+The code begins with importing necessary modules and functions:
+
+React, useState, useEffect: Essential React functionalities for component creation and state management.
+'./App.css': External CSS file for styling the application.
+{ isNameValid, getLocations }: Custom functions imported from './mock-api/apis' for name validation and location retrieval.
+2. Functional Component - App():
+
+This component represents the main structure of the application and includes the following state variables managed by useState():
+
+name: Stores the user's input for their name.
+location: Stores the selected location from the dropdown.
+nameError: Manages the error message for name validation.
+locations: Stores the array of location options fetched from the API.
+submissions: Stores an array of submitted name-location pairs for display.
+3. useEffect() Hooks:
+
+useEffect(loadLocations, []):
+Fetches location options from the API when the component mounts.
+Sets the locations state variable upon successful retrieval.
+useEffect(validateName, [name]):
+Validates the name input when the name state changes.
+Sets the nameError state based on the result of name validation.
+Utilizes a timer to delay validation for smoother user experience.
+4. Helper Functions:
+
+handleNameChange(e):
+Updates the name state as the user types.
+Clears previous name errors.
+Validates the name input asynchronously, displaying errors if the name is invalid.
+handleAddSubmission():
+Adds a submission to the submissions array if conditions are met:
+Name and location are provided.
+Name is not already submitted.
+Name validation error does not exist.
+Displays an error message if the name is already taken.
+handleClear():
+Resets the name, location, and nameError states to clear the form.
+5. Rendered JSX:
+
+Form Inputs:
+Includes input fields for name and a dropdown for location selection.
+Utilizes onChange event handlers to update state variables dynamically.
+Error Handling:
+Displays nameError message below the name input field if validation fails.
+Buttons:
+"Clear" button resets the form fields.
+"Add" button submits the form, disabled when required fields are empty or validation fails.
+Submission Table:
+Displays submitted name-location pairs in a table format.
+Conclusion:
+
+This React application efficiently manages form submissions by implementing name validation, location fetching, and error handling functionalities. By breaking down the code and understanding each component's role, further enhancements and modifications can be easily implemented to improve the user experience.
